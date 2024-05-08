@@ -45,6 +45,7 @@ public class Route
         public static final Route GET_BOT_APPLICATION =             new Route(GET, "oauth2/applications/@me");
         public static final Route GET_ROLE_CONNECTION_METADATA =    new Route(GET, "applications/{application_id}/role-connections/metadata");
         public static final Route UPDATE_ROLE_CONNECTION_METADATA = new Route(PUT, "applications/{application_id}/role-connections/metadata");
+        public static final Route GET_ENTITLEMENTS =                new Route(GET, "applications/{application_id}/entitlements");
     }
 
     public static class Interactions
@@ -72,7 +73,7 @@ public class Route
         public static final Route CREATE_FOLLOWUP = new Route(POST,   "webhooks/{application_id}/{interaction_token}", true);
         public static final Route EDIT_FOLLOWUP =   new Route(PATCH,  "webhooks/{application_id}/{interaction_token}/messages/{message_id}", true);
         public static final Route DELETE_FOLLOWUP = new Route(DELETE, "webhooks/{application_id}/{interaction_token}/messages/{message_id}", true);
-        public static final Route GET_ORIGINAL =    new Route(GET,    "webhooks/{application_id}/{interaction_token}/messages/@original", true);
+        public static final Route GET_MESSAGE =     new Route(GET,    "webhooks/{application_id}/{interaction_token}/messages/{message_id}", true);
     }
 
     public static class Self
@@ -103,6 +104,7 @@ public class Route
         public static final Route GET_BAN =            new Route(GET,    "guilds/{guild_id}/bans/{user_id}");
         public static final Route UNBAN =              new Route(DELETE, "guilds/{guild_id}/bans/{user_id}");
         public static final Route BAN =                new Route(PUT,    "guilds/{guild_id}/bans/{user_id}");
+        public static final Route BULK_BAN =           new Route(POST,   "guilds/{guild_id}/bulk-ban");
         public static final Route KICK_MEMBER =        new Route(DELETE, "guilds/{guild_id}/members/{user_id}");
         public static final Route MODIFY_MEMBER =      new Route(PATCH,  "guilds/{guild_id}/members/{user_id}");
         public static final Route ADD_MEMBER =         new Route(PUT,    "guilds/{guild_id}/members/{user_id}");
@@ -177,6 +179,7 @@ public class Route
         public static final Route MODIFY_TOKEN_WEBHOOK = new Route(PATCH,  "webhooks/{webhook_id}/{token}");
 
         public static final Route EXECUTE_WEBHOOK        = new Route(POST,   "webhooks/{webhook_id}/{token}");
+        public static final Route EXECUTE_WEBHOOK_FETCH  = new Route(GET,    "webhooks/{webhook_id}/{token}/messages/{message_id}");
         public static final Route EXECUTE_WEBHOOK_EDIT   = new Route(PATCH,  "webhooks/{webhook_id}/{token}/messages/{message_id}");
         public static final Route EXECUTE_WEBHOOK_DELETE = new Route(DELETE, "webhooks/{webhook_id}/{token}/messages/{message_id}");
         public static final Route EXECUTE_WEBHOOK_SLACK  = new Route(POST,   "webhooks/{webhook_id}/{token}/slack");
@@ -202,6 +205,7 @@ public class Route
         public static final Route CREATE_PERM_OVERRIDE = new Route(PUT,    "channels/{channel_id}/permissions/{permoverride_id}");
         public static final Route MODIFY_PERM_OVERRIDE = new Route(PUT,    "channels/{channel_id}/permissions/{permoverride_id}");
         public static final Route DELETE_PERM_OVERRIDE = new Route(DELETE, "channels/{channel_id}/permissions/{permoverride_id}");
+        public static final Route SET_STATUS =           new Route(PUT,    "channels/{channel_id}/voice-status");
 
         public static final Route SEND_TYPING =          new Route(POST,   "channels/{channel_id}/typing");
         public static final Route GET_PERMISSIONS =      new Route(GET,    "channels/{channel_id}/permissions");
@@ -258,6 +262,9 @@ public class Route
 
         public static final Route GET_MESSAGE =     new Route(GET,  "channels/{channel_id}/messages/{message_id}");
         public static final Route DELETE_MESSAGES = new Route(POST, "channels/{channel_id}/messages/bulk-delete");
+
+        public static final Route END_POLL =               new Route(POST, "channels/{channel_id}/polls/{message_id}/expire");
+        public static final Route GET_POLL_ANSWER_VOTERS = new Route(GET,  "channels/{channel_id}/polls/{message_id}/answers/{answer_id}");
     }
 
     public static class Invites
